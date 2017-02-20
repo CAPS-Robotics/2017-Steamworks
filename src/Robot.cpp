@@ -32,6 +32,10 @@ void Robot::RobotInit() {
 	this->autoPicker->AddObject("Right Station Auton", new RightStationAuton());
 	this->autoPicker->AddObject("Test Auton", new TestAuton());
 	SmartDashboard::PutData("Auto Picker", this->autoPicker);
+	SmartDashboard::PutNumber("P", 1);
+	SmartDashboard::PutNumber("I", 0);
+	SmartDashboard::PutNumber("D", 0);
+	SmartDashboard::PutNumber("Angle", 0);
 }
 
 void Robot::DisabledInit() {
@@ -49,11 +53,11 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-	SmartDashboard::PutNumber("FL Angle", Robot::drivetrain->fl->GetAngle());
-	SmartDashboard::PutNumber("FR Angle", Robot::drivetrain->fr->GetAngle());
-	SmartDashboard::PutNumber("BL Angle", Robot::drivetrain->bl->GetAngle());
-	SmartDashboard::PutNumber("BR Angle", Robot::drivetrain->br->GetAngle());
-	SmartDashboard::PutNumber("Distance Away", Robot::drivetrain->GetDistanceAway());
+	SmartDashboard::PutNumber("FL Angle", 		Robot::drivetrain->fl->GetAngle());
+	SmartDashboard::PutNumber("FR Angle", 		Robot::drivetrain->fr->GetAngle());
+	SmartDashboard::PutNumber("BL Angle", 		Robot::drivetrain->bl->GetAngle());
+	SmartDashboard::PutNumber("BR Angle", 		Robot::drivetrain->br->GetAngle());
+	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
 	frc::Scheduler::GetInstance()->Run();
 }
 
@@ -81,6 +85,16 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
 	SmartDashboard::PutNumber("Heading", 		Robot::gyro->GetHeading());
 	SmartDashboard::PutNumber("Angular Rate", 	Robot::gyro->GetAngularRate());
+	double p = SmartDashboard::GetNumber("P", 1);
+	double i = SmartDashboard::GetNumber("I", 0);
+	double d = SmartDashboard::GetNumber("D", 0);
+	double angle = SmartDashboard::GetNumber("Angle", 0);
+
+	Robot::drivetrain->fl->steer->SetPID(p, i, d);
+
+	if (Robot::oi->joy1->GetRawButton(7)) {
+		Robot::drivetrain->fl->Drive(0, angle);
+	}
 
 	frc::Scheduler::GetInstance()->Run();
 }

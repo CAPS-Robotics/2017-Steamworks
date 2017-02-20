@@ -15,12 +15,12 @@ const int FL_DRIVE_TALON 		= 2;
 const int BL_DRIVE_TALON  		= 3;
 
 // CAN IDs
-const int FL_TALON_SRX 			= 0;
-const int BL_TALON_SRX 			= 1;
-const int BR_TALON_SRX 			= 2;
-const int CLIMBER2_TALON_SRX	= 3;
-const int FR_TALON_SRX 			= 4;
-const int CLIMBER1_TALON_SRX 	= 5;
+const int FL_TALON_SRX 			= 1;
+const int BL_TALON_SRX 			= 3;
+const int BR_TALON_SRX 			= 5;
+const int CLIMBER2_TALON_SRX	= 2;
+const int FR_TALON_SRX 			= 0;
+const int CLIMBER1_TALON_SRX 	= 4;
 
 // Analog
 const int FR_STEER_ENCODER		= 0;

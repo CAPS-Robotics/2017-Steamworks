@@ -10,22 +10,25 @@ RotateToAngle::RotateToAngle(float angle) {
 
 // Called just before this  runs the first time
 void RotateToAngle::Initialize() {
-	Robot::drivetrain->rotationPid->Enable();
 }
 
 // Called repeatedly when this  is scheduled to run
 void RotateToAngle::Execute() {
-	Robot::drivetrain->rotationPid->SetSetpoint(angle);
+	SmartDashboard::PutNumber("Angle left to turn", fabs(Robot::gyro->GetHeading() - angle));
+	if (angle < 0) {
+		Robot::drivetrain->RotateRobot(-0.25);
+	} else {
+		Robot::drivetrain->RotateRobot(0.25);
+	}
 }
 
 // Make this return true when this  no longer needs to run execute()
 bool RotateToAngle::IsFinished() {
-	return (Robot::gyro->GetHeading() - Robot::drivetrain->) < 3;
+	return fmod(fabs(Robot::gyro->GetHeading() - angle), 360) < 5;
 }
 
 // Called once after isFinished returns true
 void RotateToAngle::End() {
-	Robot::drivetrain->rotationPid->Disable();
 	Robot::drivetrain->Brake();
 }
 

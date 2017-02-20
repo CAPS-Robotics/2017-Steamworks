@@ -4,5 +4,5 @@
 #include <Commands/Autonomous/DriveStraightForTime.h>
 
 MiddleStationAuton::MiddleStationAuton() {
-	AddSequential(new DriveUntilDistance(8.9));
+	AddSequential(new DriveUntilDistance(9.3));
 }

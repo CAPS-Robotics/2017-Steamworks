@@ -8,14 +8,11 @@
 class SwerveModule : public Subsystem {
 private:
 	Talon * drive;
-	float offset;
 	float currentSpeed;
 public:
 	CANTalon * steer;
-	PIDController * pid;
-	AnalogInput * positionEncoder;
 	void Drive(double speed, double angle);
-	SwerveModule(int steerMotor, int driveMotor, int encoder, float offset, bool isInverted);
+	SwerveModule(int steerMotor, int driveMotor, bool isInverted);
 	void InitDefaultCommand();
 	void ReturnToZero();
 	void ResetEncoder();
