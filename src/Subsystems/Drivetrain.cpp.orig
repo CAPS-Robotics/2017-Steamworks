@@ -7,10 +7,17 @@
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	Robot::gyro.get();
+<<<<<<< HEAD
 	this->fl = new SwerveModule(FL_TALON_SRX, FL_DRIVE_TALON, true);
 	this->fr = new SwerveModule(FR_TALON_SRX, FR_DRIVE_TALON, false);
 	this->bl = new SwerveModule(BL_TALON_SRX, BL_DRIVE_TALON, true);
 	this->br = new SwerveModule(BR_TALON_SRX, BR_DRIVE_TALON, false);
+=======
+	this->fl = new SwerveModule(FL_TALON_SRX, FL_DRIVE_TALON, FL_STEER_ENCODER, 4.5068, true);
+	this->fr = new SwerveModule(FR_TALON_SRX, FR_DRIVE_TALON, FR_STEER_ENCODER, 3.5009, false);
+	this->bl = new SwerveModule(BL_TALON_SRX, BL_DRIVE_TALON, BL_STEER_ENCODER, 2.4670, true);
+	this->br = new SwerveModule(BR_TALON_SRX, BR_DRIVE_TALON, BR_STEER_ENCODER, 0.6079, false);
+>>>>>>> 1f3bf166c5b839b156250a68c0ce3c08c1e0454f
 	this->rangeFinder = new AnalogInput(RANGE_FINDER);
 	this->desiredHeading = 0;
 }

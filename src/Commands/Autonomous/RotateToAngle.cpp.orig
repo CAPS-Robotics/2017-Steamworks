@@ -14,23 +14,39 @@ void RotateToAngle::Initialize() {
 
 // Called repeatedly when this  is scheduled to run
 void RotateToAngle::Execute() {
+<<<<<<< HEAD
+	SmartDashboard::PutNumber("Angle left to turn", fabs(Robot::gyro->GetHeading() - angle));
+	if (angle < 0) {
+		Robot::drivetrain->RotateRobot(-0.25);
+	} else {
+		Robot::drivetrain->RotateRobot(0.25);
+	}
+=======
 	if ((Robot::gyro->GetHeading() - angle) > 0) {
 		Robot::drivetrain->RotateRobot(0.3);
 	} else {
 		Robot::drivetrain->RotateRobot(-0.3);
 	}
 	SmartDashboard::PutString("Rotate Finished", "In Progress!");
+>>>>>>> 1f3bf166c5b839b156250a68c0ce3c08c1e0454f
 }
 
 // Make this return true when this  no longer needs to run execute()
 bool RotateToAngle::IsFinished() {
+<<<<<<< HEAD
 	return fmod(fabs(Robot::gyro->GetHeading() - angle), 360) < 5;
+=======
+	return fabs(Robot::gyro->GetHeading() - angle) < 7;
+>>>>>>> 1f3bf166c5b839b156250a68c0ce3c08c1e0454f
 }
 
 // Called once after isFinished returns true
 void RotateToAngle::End() {
+<<<<<<< HEAD
+=======
 	SmartDashboard::PutString("Rotate Finished", "Done!");
 	Robot::drivetrain->ReturnWheelsToZero();
+>>>>>>> 1f3bf166c5b839b156250a68c0ce3c08c1e0454f
 	Robot::drivetrain->Brake();
 }
 

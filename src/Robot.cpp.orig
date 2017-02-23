@@ -91,6 +91,7 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
 	SmartDashboard::PutNumber("Heading", 		Robot::gyro->GetHeading());
 	SmartDashboard::PutNumber("Angular Rate", 	Robot::gyro->GetAngularRate());
+<<<<<<< HEAD
 	double p = SmartDashboard::GetNumber("P", 1);
 	double i = SmartDashboard::GetNumber("I", 0);
 	double d = SmartDashboard::GetNumber("D", 0);
@@ -101,7 +102,10 @@ void Robot::TeleopPeriodic() {
 	if (Robot::oi->joy1->GetRawButton(7)) {
 		Robot::drivetrain->fl->Drive(0, angle);
 	}
+=======
 	SmartDashboard::PutNumber("Center X", 		Robot::vision->GetCentralValue());
+>>>>>>> 1f3bf166c5b839b156250a68c0ce3c08c1e0454f
+
 	frc::Scheduler::GetInstance()->Run();
 }
 

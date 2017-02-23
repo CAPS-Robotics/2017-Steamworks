@@ -6,9 +6,15 @@
 #include <Commands/Drivetrain/ZeroGyro.h>
 
 LeftStationAuton::LeftStationAuton() {
+<<<<<<< HEAD
+	AddSequential(new DriveStraightForTime(2));
+	AddSequential(new RotateToAngle(-60));
+	AddSequential(new DriveUntilDistance(9.3));
+=======
 	AddSequential(new ZeroGyro());
 	AddSequential(new DriveStraightForTime(2.65));
 	AddSequential(new RotateToAngle(-55));
 	AddSequential(new StrafeAlign());
 	AddSequential(new DriveUntilDistance(9.2));
+>>>>>>> 1f3bf166c5b839b156250a68c0ce3c08c1e0454f
 }
