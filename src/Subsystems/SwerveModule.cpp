@@ -11,8 +11,11 @@ SwerveModule::SwerveModule(int steerMotor, int driveMotor, bool isInverted) : Su
 	steer->ConfigEncoderCodesPerRev(497);
 	steer->SetControlMode(CANTalon::kPosition);
 	steer->SetPosition(0);
-	steer->SetPID(2.5f, 0.0002f, 0.0005f);
-	steer->SetAllowableClosedLoopErr(1);
+	steer->SetPID(25.f, 0.f, 1.f);
+	steer->SetAllowableClosedLoopErr(2);
+	steer->ConfigNominalOutputVoltage(+0.f, -0.f);
+	steer->ConfigPeakOutputVoltage(+12.f, -12.f);
+	steer->SetStatusFrameRateMs(CANTalon::StatusFrameRate::StatusFrameRateFeedback, 10);
 	steer->Set(0);
 	currentSpeed = 0;
 }
@@ -22,7 +25,7 @@ void SwerveModule::InitDefaultCommand() {
 }
 
 void SwerveModule::Drive(double speed, double angle) {
-	speed = fabs(speed) > 0.1 ? speed : 0;
+	//speed = fabs(speed) > 0.1 ? speed : 0;
 
 	double dist = angle - this->GetAngle();
 

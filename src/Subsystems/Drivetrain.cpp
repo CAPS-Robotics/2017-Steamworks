@@ -12,7 +12,14 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	this->bl = new SwerveModule(BL_TALON_SRX, BL_DRIVE_TALON, true);
 	this->br = new SwerveModule(BR_TALON_SRX, BR_DRIVE_TALON, false);
 	this->rangeFinder = new AnalogInput(RANGE_FINDER);
+	this->spin = new RobotSpin();
 	this->desiredHeading = 0;
+	this->rotationPid = new PIDController(1.0, 0.0, 0.0, Robot::gyro.get(), this->spin, 0.002);
+	this->rotationPid->SetContinuous(true);
+	this->rotationPid->SetAbsoluteTolerance(3);
+	this->rotationPid->SetInputRange(-360, 360);
+	this->rotationPid->SetOutputRange(-0.75, 0.75);
+	this->rotationPid->Enable();
 }
 
 void Drivetrain::InitDefaultCommand() {
@@ -45,6 +52,7 @@ void Drivetrain::Drive(double angle, double speed, double speedMultiplier) {
 }
 
 void Drivetrain::RotateRobot(double speed) {
+	SmartDashboard::PutNumber("Speed", speed);
 	this->fl->Drive( speed, -45);
 	this->fr->Drive(-speed,  45);
 	this->bl->Drive( speed,  45);

@@ -7,8 +7,9 @@
 
 LeftStationAuton::LeftStationAuton() {
 	AddSequential(new ZeroGyro());
-	AddSequential(new DriveStraightForTime(2.65));
+	AddSequential(new DriveStraightForTime(2.15));
 	AddSequential(new RotateToAngle(-55));
+	AddSequential(new DriveStraightForTime(0.5));
 	AddSequential(new StrafeAlign());
-	AddSequential(new DriveUntilDistance(9.2));
+	AddSequential(new DriveUntilDistance(9.1));
 }

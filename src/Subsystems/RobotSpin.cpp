@@ -3,7 +3,8 @@
 #include <PigeonImu.h>
 #include <Subsystems/RobotSpin.h>
 
-RobotSpin::RobotSpin() : output(0) {
+RobotSpin::RobotSpin() {
+	output = 0;
 	Robot::drivetrain.get();
 }
 

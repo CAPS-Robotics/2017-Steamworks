@@ -3,6 +3,7 @@
 
 #include <CANTalon.h>
 #include "SwerveModule.h"
+#include "RobotSpin.h"
 #include "WPILib.h"
 #include "Commands/Subsystem.h"
 
@@ -15,6 +16,8 @@ public:
 	SwerveModule * fr;
 	SwerveModule * bl;
 	SwerveModule * br;
+	PIDController * rotationPid;
+	RobotSpin * spin;
 	Drivetrain();
 	void InitDefaultCommand();
 	double GetDistanceAway();

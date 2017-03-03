@@ -4,6 +4,7 @@
 #include "Robot.h"
 #include "WPILib.h"
 #include "Commands/Autonomous/TestAuton.h"
+#include "Commands/Autonomous/EasyMiddle.h"
 #include "Commands/Autonomous/LeftStationAuton.h"
 #include "Commands/Autonomous/MiddleStationAuton.h"
 #include "Commands/Autonomous/RightStationAuton.h"
@@ -32,12 +33,11 @@ void Robot::RobotInit() {
 	this->autoPicker->AddDefault("Middle Station Auton", new MiddleStationAuton());
 	this->autoPicker->AddObject("Left Station Auton", new LeftStationAuton());
 	this->autoPicker->AddObject("Right Station Auton", new RightStationAuton());
+	this->autoPicker->AddObject("Easy Middle Auton", new EasyMiddle());
 	this->autoPicker->AddObject("Test Auton", new TestAuton());
 	SmartDashboard::PutData("Auto Picker", this->autoPicker);
-	SmartDashboard::PutNumber("P", 1);
-	SmartDashboard::PutNumber("I", 0);
-	SmartDashboard::PutNumber("D", 0);
-	SmartDashboard::PutNumber("Angle", 0);
+	SmartDashboard::PutNumber("Output", 0);
+	SmartDashboard::PutNumber("Setpoint", 0);
 }
 
 void Robot::DisabledInit() {
@@ -60,6 +60,7 @@ void Robot::AutonomousPeriodic() {
 	SmartDashboard::PutNumber("BL Angle", 		Robot::drivetrain->bl->GetAngle());
 	SmartDashboard::PutNumber("BR Angle", 		Robot::drivetrain->br->GetAngle());
 	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
+	SmartDashboard::PutNumber("Center X", 		Robot::vision->GetCentralValue());
 	frc::Scheduler::GetInstance()->Run();
 }
 
@@ -80,10 +81,6 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	SmartDashboard::PutNumber("FL Voltage", 	Robot::drivetrain->fl->positionEncoder->GetVoltage());
-	SmartDashboard::PutNumber("FR Voltage", 	Robot::drivetrain->fr->positionEncoder->GetVoltage());
-	SmartDashboard::PutNumber("BL Voltage", 	Robot::drivetrain->bl->positionEncoder->GetVoltage());
-	SmartDashboard::PutNumber("BR Voltage", 	Robot::drivetrain->br->positionEncoder->GetVoltage());
 	SmartDashboard::PutNumber("FL Angle", 		Robot::drivetrain->fl->GetAngle());
 	SmartDashboard::PutNumber("FR Angle", 		Robot::drivetrain->fr->GetAngle());
 	SmartDashboard::PutNumber("BL Angle", 		Robot::drivetrain->bl->GetAngle());
@@ -91,16 +88,13 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
 	SmartDashboard::PutNumber("Heading", 		Robot::gyro->GetHeading());
 	SmartDashboard::PutNumber("Angular Rate", 	Robot::gyro->GetAngularRate());
-	double p = SmartDashboard::GetNumber("P", 1);
-	double i = SmartDashboard::GetNumber("I", 0);
-	double d = SmartDashboard::GetNumber("D", 0);
-	double angle = SmartDashboard::GetNumber("Angle", 0);
 
-	Robot::drivetrain->fl->steer->SetPID(p, i, d);
-
-	if (Robot::oi->joy1->GetRawButton(7)) {
-		Robot::drivetrain->fl->Drive(0, angle);
+	if (Robot::oi->joy1->GetRawButton(5)) {
+		Robot::drivetrain->rotationPid->SetSetpoint(90);
 	}
+
+	SmartDashboard::PutNumber("Setpoint", Robot::drivetrain->rotationPid->GetSetpoint());
+
 	SmartDashboard::PutNumber("Center X", 		Robot::vision->GetCentralValue());
 	frc::Scheduler::GetInstance()->Run();
 }

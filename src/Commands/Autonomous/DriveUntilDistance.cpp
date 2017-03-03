@@ -38,4 +38,5 @@ void DriveUntilDistance::End() {
 // Called when another  which requires one or more of the same
 // subsystems is scheduled to run
 void DriveUntilDistance::Interrupted() {
+	End();
 }
