@@ -34,10 +34,7 @@ void Robot::RobotInit() {
 	this->autoPicker->AddObject("Left Station Auton", new LeftStationAuton());
 	this->autoPicker->AddObject("Right Station Auton", new RightStationAuton());
 	this->autoPicker->AddObject("Easy Middle Auton", new EasyMiddle());
-	this->autoPicker->AddObject("Test Auton", new TestAuton());
 	SmartDashboard::PutData("Auto Picker", this->autoPicker);
-	SmartDashboard::PutNumber("Output", 0);
-	SmartDashboard::PutNumber("Setpoint", 0);
 }
 
 void Robot::DisabledInit() {
@@ -60,6 +57,7 @@ void Robot::AutonomousPeriodic() {
 	SmartDashboard::PutNumber("BL Angle", 		Robot::drivetrain->bl->GetAngle());
 	SmartDashboard::PutNumber("BR Angle", 		Robot::drivetrain->br->GetAngle());
 	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
+	SmartDashboard::PutNumber("Heading", 		Robot::gyro->GetHeading());
 	SmartDashboard::PutNumber("Center X", 		Robot::vision->GetCentralValue());
 	frc::Scheduler::GetInstance()->Run();
 }
@@ -87,14 +85,6 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("BR Angle", 		Robot::drivetrain->br->GetAngle());
 	SmartDashboard::PutNumber("Distance Away", 	Robot::drivetrain->GetDistanceAway());
 	SmartDashboard::PutNumber("Heading", 		Robot::gyro->GetHeading());
-	SmartDashboard::PutNumber("Angular Rate", 	Robot::gyro->GetAngularRate());
-
-	if (Robot::oi->joy1->GetRawButton(5)) {
-		Robot::drivetrain->rotationPid->SetSetpoint(90);
-	}
-
-	SmartDashboard::PutNumber("Setpoint", Robot::drivetrain->rotationPid->GetSetpoint());
-
 	SmartDashboard::PutNumber("Center X", 		Robot::vision->GetCentralValue());
 	frc::Scheduler::GetInstance()->Run();
 }

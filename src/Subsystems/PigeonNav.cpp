@@ -15,7 +15,8 @@ double PigeonNav::PIDGet() {
 }
 
 double PigeonNav::GetHeading() {
-	return fmod(this->gyro->GetFusedHeading(), 360) + 360, 360);
+	double angle = fmod(fmod(this->gyro->GetFusedHeading(), 360) + 360, 360);
+	return angle <= 180 ? angle : -(360 - angle);
 }
 
 double PigeonNav::GetAngularRate() {

@@ -5,7 +5,6 @@
 
 RobotSpin::RobotSpin() {
 	output = 0;
-	Robot::drivetrain.get();
 }
 
 double RobotSpin::Get() {
@@ -13,6 +12,6 @@ double RobotSpin::Get() {
 }
 
 void RobotSpin::PIDWrite(double output) {
+	SmartDashboard::PutNumber("PID Output", output);
 	this->output = output;
-	Robot::drivetrain->RotateRobot(output);
 }

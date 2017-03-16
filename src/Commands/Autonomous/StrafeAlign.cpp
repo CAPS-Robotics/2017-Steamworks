@@ -17,16 +17,13 @@ void StrafeAlign::Initialize() {
 void StrafeAlign::Execute() {
 	pos = Robot::vision->GetCentralValue();
 	double dist = pos - 160;
-	if (dist > 5) {
-		Robot::drivetrain->Drive(90, -0.225, 1);
+	if (dist > 8) {
+		Robot::drivetrain->Drive(90, -0.2, 1);
 	} else if (pos == 0) {
 		Robot::drivetrain->Brake();
 		End();
-	} else if (dist < -5) {
-		Robot::drivetrain->Drive(90, 0.225, 1);
-	} else {
-		Robot::drivetrain->Brake();
-		End();
+	} else if (dist < -8) {
+		Robot::drivetrain->Drive(90, 0.2, 1);
 	}
 }
 

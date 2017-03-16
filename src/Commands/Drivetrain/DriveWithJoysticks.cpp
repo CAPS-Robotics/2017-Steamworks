@@ -18,6 +18,9 @@ void DriveWithJoysticks::Execute() {
 	double speedMultiplier = (1 - Robot::oi->GetSlider()) / 2;
 	if (Robot::oi->joy1->GetRawButton(1)) {
 		Robot::drivetrain->CrabDrive(Robot::oi->GetX(), Robot::oi->GetY(), Robot::oi->GetTwist(), speedMultiplier, false);
+	} else if (Robot::oi->joy1->GetRawButton(5)) {
+		Robot::drivetrain->rotationPid->SetSetpoint(90);
+		Robot::drivetrain->CrabDrive(0, 0, Robot::drivetrain->rotationPid->Get(), speedMultiplier, false);
 	} else if (Robot::oi->joy1->GetPOV() == 0) {
 		Robot::drivetrain->Drive(0, 	Robot::oi->GetY(), speedMultiplier);
 	} else if (Robot::oi->joy1->GetPOV() == 90) {

@@ -28,7 +28,7 @@ double Vision::GetCentralValue() {
 	} else if (centerX.size() == 1) {
 		return centerX[0];
 	} else {
-		return centerX.size();
+		return 0;
 	}
 }
 

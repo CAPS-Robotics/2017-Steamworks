@@ -42,8 +42,6 @@ void SwerveModule::Drive(double speed, double angle) {
 		currentSpeed += 0.04;
 	}
 
-	SmartDashboard::PutNumber("Distance", dist);
-
 	this->steer->Set(angle / 1.2 / 360);
 	this->drive->Set(currentSpeed);
 }

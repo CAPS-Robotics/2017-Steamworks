@@ -12,14 +12,15 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	this->bl = new SwerveModule(BL_TALON_SRX, BL_DRIVE_TALON, true);
 	this->br = new SwerveModule(BR_TALON_SRX, BR_DRIVE_TALON, false);
 	this->rangeFinder = new AnalogInput(RANGE_FINDER);
-	this->spin = new RobotSpin();
 	this->desiredHeading = 0;
-	this->rotationPid = new PIDController(1.0, 0.0, 0.0, Robot::gyro.get(), this->spin, 0.002);
+	this->spin = new RobotSpin();
+	this->rotationPid = new PIDController(1.0, 0.0, 0.0, Robot::gyro.get(), this->spin, 0.02);
 	this->rotationPid->SetContinuous(true);
 	this->rotationPid->SetAbsoluteTolerance(3);
-	this->rotationPid->SetInputRange(-360, 360);
-	this->rotationPid->SetOutputRange(-0.75, 0.75);
 	this->rotationPid->Enable();
+	this->rotationPid->SetSetpoint(0);
+	this->rotationPid->SetInputRange(-180, 180);
+	this->rotationPid->SetOutputRange(-0.75, 0.75);
 }
 
 void Drivetrain::InitDefaultCommand() {
@@ -136,10 +137,8 @@ void Drivetrain::CrabDrive(double x, double y, double rotation, double speedMult
 		} else {
 			bra = 0;
 		}
-		SmartDashboard::PutNumber("Desired Heading", desiredHeading);
 
 		double correction = 0; //-0.0025 * (Robot::gyro->GetHeading() - desiredHeading);
-		SmartDashboard::PutNumber("Difference", correction);
 		this->fl->Drive((flds + correction) * speedMultiplier, fla);
 		this->fr->Drive((frds - correction) * speedMultiplier, fra);
 		this->bl->Drive((blds + correction) * speedMultiplier, bla);
