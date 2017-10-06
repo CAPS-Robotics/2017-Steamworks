@@ -30,6 +30,11 @@ const int BR_STEER_ENCODER		= 3;
 
 const int RANGE_FINDER			= 4;
 
+const int FL_OFFSET				= 4.5166;
+const int FR_OFFSET				= 3.4241;
+const int BL_OFFSET				= 2.4341;
+const int BR_OFFSET				= 0.7861;
+
 const int PI = 3.1415926536;
 const int GR = 1.0 / 1.2;
 const int GEAR_DISTANCE = 9.3;

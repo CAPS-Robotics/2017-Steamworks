@@ -20,7 +20,7 @@ void Climb::Execute() {
 }
 
 
-// Make this return true when this  no longer needs to run execute()
+// Make this return true when this no longer needs to run execute()
 bool Climb::IsFinished() {
 	return Robot::climber->Get1Current() > 45 || Robot::climber->Get2Current() > 45;
 }
