@@ -6,10 +6,10 @@
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	Robot::gyro.get();
-	this->fl = new SwerveModule(FL_TALON_SRX, FL_DRIVE_TALON, FL_STEER_ENCODER, 4.5166, true);
-	this->fr = new SwerveModule(FR_TALON_SRX, FR_DRIVE_TALON, FR_STEER_ENCODER, 3.4241, false);
-	this->bl = new SwerveModule(BL_TALON_SRX, BL_DRIVE_TALON, BL_STEER_ENCODER, 2.4341, true);
-	this->br = new SwerveModule(BR_TALON_SRX, BR_DRIVE_TALON, BR_STEER_ENCODER, 0.4980, false);
+	this->fl = new SwerveModule(FL_TALON_SRX, FL_DRIVE_TALON, FL_STEER_ENCODER, FL_OFFSET, true);
+	this->fr = new SwerveModule(FR_TALON_SRX, FR_DRIVE_TALON, FR_STEER_ENCODER, FR_OFFSET, false);
+	this->bl = new SwerveModule(BL_TALON_SRX, BL_DRIVE_TALON, BL_STEER_ENCODER, BL_OFFSET, true);
+	this->br = new SwerveModule(BR_TALON_SRX, BR_DRIVE_TALON, BR_STEER_ENCODER, BR_OFFSET, false);
 	this->rangeFinder = new AnalogInput(RANGE_FINDER);
 	this->desiredHeading = 0;
 }
