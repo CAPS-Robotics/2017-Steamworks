@@ -6,7 +6,7 @@ DriveUntilDistance::DriveUntilDistance(float distance) {
 	// Use Requires() here to declare subsystem dependencies
 	this->distance = distance;
 	Requires(Robot::drivetrain.get());
-	this->speed = 0.3;
+	this->speed = 0.25;
 }
 
 // Called just before this  runs the first time
@@ -16,7 +16,7 @@ void DriveUntilDistance::Initialize() {
 
 // Called repeatedly when this  is scheduled to run
 void DriveUntilDistance::Execute() {
-	Robot::drivetrain->ArcadeDrive(0.35, 0, 1);
+	Robot::drivetrain->ArcadeDrive(speed, 0, 1);
 	if (Robot::drivetrain->GetDistanceAway() < distance) {
 		End();
 	}

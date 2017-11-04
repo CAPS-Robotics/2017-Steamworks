@@ -6,7 +6,7 @@
 #include "../../RobotMap.h"
 
 MiddleStationAuton::MiddleStationAuton() {
-	AddSequential(new DriveUntilDistance(24));
+	AddSequential(new DriveUntilDistance(42));
 	AddSequential(new StrafeAlign());
 	AddSequential(new DriveUntilDistance(GEAR_DISTANCE));
 }

@@ -20,7 +20,7 @@ void Vision::Update() {
 
 double Vision::GetCentralValue() {
 	this->Update();
-	if (centerX.size() == 2) {
+	/*if (centerX.size() == 2) {
 		double id = centerX[0] > centerX[1] ? 0 : 1;
 		double leftEdge = centerX[1 - id] + width[1 - id] / 2;
 		double rightEdge = centerX[id] - width[id] / 2;
@@ -29,7 +29,13 @@ double Vision::GetCentralValue() {
 		return centerX[0];
 	} else {
 		return 0;
+	}*/
+	double theCenterX = 0;
+	for(unsigned int i = 0; i < centerX.size(); i++) {
+		theCenterX += centerX[i];
 	}
+	if(centerX.size() != 0) { theCenterX /= centerX.size(); }
+	return theCenterX;
 }
 
 void Vision::InitDefaultCommand() {

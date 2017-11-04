@@ -6,5 +6,5 @@
 #include "../../RobotMap.h"
 
 EasyMiddle::EasyMiddle() {
-	AddSequential(new DriveUntilDistance(GEAR_DISTANCE));
+	AddSequential(new DriveStraightForTime(3));
 }

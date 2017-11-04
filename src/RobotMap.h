@@ -33,7 +33,7 @@ const int RANGE_FINDER			= 4;
 const float FL_OFFSET			= 4.5690;
 const float FR_OFFSET			= 2.0739;
 const float BL_OFFSET			= 2.4523;
-const float BR_OFFSET			= 4.8461;
+const float BR_OFFSET			= 2.4340;
 
 const double PI = 3.1415926536;
 const float GR = 1.0 / 1.2;
