@@ -1,6 +1,7 @@
 #include <Commands/Autonomous/StrafeAlign.h>
 #include "Robot.h"
 #include "WPILib.h"
+#include "../../RobotMap.h";
 
 StrafeAlign::StrafeAlign() {
 	// Use Requires() here to declare subsystem dependencies
@@ -17,9 +18,9 @@ void StrafeAlign::Initialize() {
 void StrafeAlign::Execute() {
 	pos = Robot::vision->GetCentralValue();
 	double dist = pos - 160;
-	if (dist > 6) {
+	if (dist > STRAFE_ERROR_MARGIN) {
 		Robot::drivetrain->Drive(90, -0.15, 1);
-	} else if (dist < -6) {
+	} else if (dist < -STRAFE_ERROR_MARGIN) {
 		Robot::drivetrain->Drive(90, 0.15, 1);
 	} else {
 		End();
@@ -28,7 +29,7 @@ void StrafeAlign::Execute() {
 
 // Make this return true when this  no longer needs to run execute()
 bool StrafeAlign::IsFinished() {
-	return pos <= 166 && pos >= 154;
+	return pos <= 160+STRAFE_ERROR_MARGIN && pos >= 160-STRAFE_ERROR_MARGIN;
 }
 
 // Called once after isFinished returns true

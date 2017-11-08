@@ -35,6 +35,8 @@ const float FR_OFFSET			= 2.0739;
 const float BL_OFFSET			= 2.4523;
 const float BR_OFFSET			= 2.4340;
 
+const int STRAFE_ERROR_MARGIN = 5;
+
 const double PI = 3.1415926536;
 const float GR = 1.0 / 1.2;
 const float GEAR_DISTANCE = 9.3;

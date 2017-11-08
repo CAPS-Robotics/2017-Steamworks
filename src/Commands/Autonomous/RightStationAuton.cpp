@@ -5,6 +5,6 @@
 
 RightStationAuton::RightStationAuton() {
 	AddSequential(new ZeroGyro());
-	AddSequential(new DriveStraightForTime(3.6));
+	AddSequential(new DriveStraightForTime(3.4));
 	AddSequential(new PlaceGear(60));
 }

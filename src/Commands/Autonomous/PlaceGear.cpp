@@ -6,7 +6,7 @@
 
 PlaceGear::PlaceGear(double angle) {
 	AddSequential(new RotateToAngle(angle));
-	AddSequential(new DriveUntilDistance(30));
+	AddSequential(new DriveUntilDistance(42));
 	AddSequential(new StrafeAlign());
 	AddSequential(new DriveUntilDistance(GEAR_DISTANCE));
 }
